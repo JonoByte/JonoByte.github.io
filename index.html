@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your portfolio description here">
+    <meta property="og:title" content="Your Portfolio Title">
+    <meta property="og:description" content="Your portfolio description here">
+    <meta property="og:image" content="path/to/your/image.jpg">
+    <meta property="og:url" content="https://your-portfolio-url.com">
+    <title>Full Stack Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="src/css/styles.css">
+    <style>
+        .tech-item {
+            position: relative;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            transform-origin: center;
+            will-change: transform;
+            backface-visibility: hidden;
+            z-index: 1;
+            pointer-events: auto;
+        }
+
+        .tech-popup {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            z-index: 20;
+        }
+
+        .halo-effect {
+        position: relative;
+        z-index: 1;
+    }
+
+    .halo-effect::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.1), rgba(0, 0, 255, 0.3));
+        border-radius: 20px;
+        z-index: -1;
+        filter: blur(20px);
+        opacity: 0.7;
+        transition: transform 0.1s ease, background 0.3s ease;
+    }
+
+    @keyframes halo {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.05);
+        }
+    }
+
+    .scroll-offset {
+        padding-top: 10rem;
+        margin-top: -4rem;
+    }
+    .info-icon {
+    font-size: 1rem;
+    color: #ffffffc5;
+    margin-left: 8px;
+    cursor: pointer;
+    position: relative;
+}
+    .tooltip-text {
+    visibility: visible;
+    width: 150px;
+    background-color: #3333335d;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 4px 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    text-shadow: #3333335d 2px 2px 2px;
+}
+
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #33333352 transparent transparent transparent;
+}
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <header class="fixed top-0 left-0 w-full bg-white bg-opacity-80 dark:bg-gray-800 dark:bg-opacity-80 shadow-md z-50">
+        <nav class="container mx-auto p-4 flex justify-between items-center">
+            <div class="relative flex items-center gap-4">
+                <img 
+                    src="https://avatars.githubusercontent.com/u/131014056" 
+                    alt="Jonathan Gunnerud GitHub Profile" 
+                    class="w-24 h-24 rounded-full border-2 border-gray-200 dark:border-gray-700 absolute"
+                    style="top: 50%; transform: translateY(-50%);"
+                >
+                <div class="ml-32 text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">Jonathan Gunnerud</div>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-gray-900 dark:text-gray-100 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="menu" class="hidden md:flex space-x-8">
+                <li><a href="#about" class="hover:text-blue-600 transition-colors duration-300">About</a></li>
+                <li><a href="#technologies" class="hover:text-blue-600 transition-colors duration-300">Technologies</a></li>
+                <li><a href="#projects" class="hover:text-blue-600 transition-colors duration-300">Projects</a></li>
+                <li><a href="#contact" class="hover:text-blue-600 transition-colors duration-300">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="hover:text-blue-600 transition-colors duration-300">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 z-0"></div>
+        <div class="container mx-auto text-center z-10 px-4">
+            <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">Full Stack Developer</h1>
+            <p class="text-2xl mb-8 text-gray-700 dark:text-gray-300">Passionate about creating elegant solutions</p>
+            <a href="#contact" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">Get in touch</a>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-20">
+        <section id="about" class="scroll-offset mb-32 scroll-mt-20">
+            <h2 class="text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">About Me</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl halo-effect">
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Hello! I'm Jonathan Gunnerud, a passionate software developer with a strong background in .NET, C#, and SQL. I have a keen interest in game development, API integration, and creating dynamic web applications. My journey in software development has been driven by a desire to solve complex problems and deliver high-quality solutions.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+                    I have experience working with various technologies, including Unity for game development and Razor Pages for web applications. My projects showcase my ability to design and implement robust architectures, develop dynamic search functionalities, and create engaging user experiences. I am always eager to learn new skills and take on challenging projects that push the boundaries of my knowledge.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+                    In addition to my technical skills, I am a strong advocate for collaboration and teamwork. I enjoy pair programming and guiding teams through coding and problem-solving processes. My goal is to continue growing as a developer and contribute to innovative projects that make a positive impact.
+                </p>
+                <p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
+                    When I'm not coding, you can find me exploring new technologies, playing video games, working out, or working on personal projects that combine my love for technology and creativity.
+                </p>
+            </div>
+        </section>
+
+        <section id="technologies" class="scroll-offset mb-32 scroll-mt-20">
+            <h2 class="relative inline-block text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+                Technologies
+                <span class="tooltip-text"> <i class="fas fa-info-circle info-icon"></i> Hover to see more about each technology</span>
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 technologies">
+            <!-- C# -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fas fa-code text-4xl mr-4"></i>
+                <span class="text-lg">C#</span>
+                <div class="tech-popup">
+                <i class="fab fa-unity"></i> Unity
+                <i class="fab fa-windows"></i> .NET
+                <i class="fas fa-mobile-alt"></i> MAUI
+                </div>
+            </div>
+
+            <!-- Python -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fab fa-python text-4xl mr-4"></i>
+                <span class="text-lg">Python</span>
+                <div class="tech-popup">
+                <i class="fas fa-flask"></i> Flask
+                <i class="fas fa-gamepad"></i> GDscript
+                </div>
+            </div>
+
+            <!-- Frameworks -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fab fa-microsoft text-4xl mr-4"></i>
+                <span class="text-lg">.NET</span>
+                <div class="tech-popup">
+                <i class="fab fa-microsoft"></i> .NET Core
+                <i class="fab fa-microsoft"></i> Framework
+                <i class="fab fa-microsoft"></i> ASP.NET
+                <i class="fas fa-mobile-alt"></i> MAUI
+                </div>
+            </div>
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fab fa-html5 text-4xl mr-4"></i>
+                <span class="text-lg">Web</span>
+                <div class="tech-popup">
+                <i class="fab fa-html5"></i> HTML
+                <i class="fab fa-css3-alt"></i> CSS
+                <i class="fab fa-css3-alt"></i> Tailwind
+                <i class="fab fa-php"></i> PHP
+                </div>
+            </div>
+
+            <!-- Database -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fas fa-database text-4xl mr-4"></i>
+                <span class="text-lg">Database</span>
+                <div class="tech-popup">
+                <i class="fas fa-database"></i> SQL
+                <i class="fas fa-database"></i> SSMS
+                <i class="fas fa-database"></i> SQLite
+                <i class="fas fa-database"></i> Database Design
+                </div>
+            </div>
+
+            <!-- Version Control -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fab fa-git-alt text-4xl mr-4"></i>
+                <span class="text-lg">Git</span>
+                <div class="tech-popup">
+                <i class="fab fa-git-alt"></i> Git Master
+                <i class="fab fa-git-alt"></i> Version Control
+                </div>
+            </div>
+
+            <!-- Cloud -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fab fa-windows text-4xl mr-4"></i>
+                <span class="text-lg">Azure</span>
+                <div class="tech-popup">
+                <i class="fab fa-windows"></i> Azure
+                <i class="fab fa-windows"></i> Azure DevOps
+                </div>
+            </div>
+
+            <!-- Design -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fab fa-figma text-4xl mr-4"></i>
+                <span class="text-lg">Design</span>
+                <div class="tech-popup">
+                <i class="fab fa-figma"></i> Figma
+                <i class="fas fa-paint-brush"></i> UI/UX
+                </div>
+            </div>
+
+            <!-- Project Management -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fas fa-tasks text-4xl mr-4"></i>
+                <span class="text-lg">Agile</span>
+                <div class="tech-popup">
+                <i class="fas fa-tasks"></i> Scrum Master
+                <i class="fas fa-tasks"></i> Agile
+                <i class="fab fa-jira"></i> Jira
+                </div>
+            </div>
+
+            <!-- Tools -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fas fa-tools text-4xl mr-4"></i>
+                <span class="text-lg">Tools</span>
+                <div class="tech-popup">
+                <i class="fas fa-code"></i> VS Code
+                <i class="fas fa-code"></i> Visual Studio
+                <i class="fab fa-linux"></i> Linux
+                <i class="fas fa-microchip"></i> Arduino
+                </div>
+            </div>
+
+            <!-- Game Dev -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fas fa-gamepad text-4xl mr-4"></i>
+                <span class="text-lg">Game Dev</span>
+                <div class="tech-popup">
+                <i class="fab fa-unity"></i> Unity
+                <i class="fas fa-gamepad"></i> GDscript
+                </div>
+            </div>
+
+            <!-- Architecture -->
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
+                <i class="fas fa-project-diagram text-4xl mr-4"></i>
+                <span class="text-lg">Architecture</span>
+                <div class="tech-popup">
+                <i class="fas fa-project-diagram"></i> MVC
+                <i class="fas fa-project-diagram"></i> API
+                <i class="fas fa-project-diagram"></i> Razorpages
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="projects" class="scroll-offset mb-32 scroll-mt-20">
+    <h2 class="text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project 1 Roblox scraper-->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
+            <div class="relative rounded-2xl mb-4">
+                <img src="assets/images/RobloxGameScraper.png" alt="Roblox Game Code Scraper and Manager" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
+                    <div class="p-4 text-white space-y-2">
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors ml-2">Source Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3 text-grey-700 dark:text-gray-300">
+                <h3 class="text-3xl font-semibold drop-shadow-lg tracking-widest">Roblox Game Code Scraper and Manager</h3>
+                <div class="flex flex-col space-y-2 text-sm text-black bg-white/60 p-3 rounded-xl shadow-inner">
+                    <span class="px-3 py-1 bg-pink-50 text-pink-600 rounded-full self-start font-medium">Early 2025</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">C#</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">Python</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">Spectre.Console</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">HttpClient</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">HtmlAgilityPack</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">Json</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">TextCopy</span>
+                    </div>
+                </div>
+                <p class="leading-loose text-sm md:text-base">
+                    This project is a robust application designed to scrape, validate, and manage Roblox game codes. It consists of several key components:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-sm md:text-base">
+                    <li><strong>RobloxApi.cs:</strong> Interacts with the Roblox API and cleans game names.</li>
+                    <li><strong>RobloxScraper.cs:</strong> Scrapes codes, merges data, and saves results to JSON.</li>
+                    <li><strong>Program.cs:</strong> Main entry, user interactions, and auto code fetcher.</li>
+                </ul>
+                <p class="leading-loose text-sm md:text-base">Features include scraping, Roblox API integration, favorites, license validation, and more.</p>
+            </div>
+        </div>
+        <!-- Project 2 Freaky fashion-->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
+            <div class="relative rounded-2xl mb-4">
+                <img src="assets/images/FreakyFashion1.png" alt="FreakyFashion Image" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
+                    <div class="p-4 text-white space-y-2">
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors ml-2">Source Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3 text-grey-700 dark:text-gray-300">
+                <h3 class="text-3xl font-semibold drop-shadow-lg tracking-widest">Freaky Fashion</h3>
+                <div class="flex flex-col space-y-2 text-sm text-black bg-white/60 p-3 rounded-xl shadow-inner">
+                    <span class="px-3 py-1 bg-pink-50 text-pink-600 rounded-full self-start font-medium">Late 2024</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">HTML</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">CSS</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">JavaScript</span>
+                    </div>
+                </div>
+                <p class="leading-loose text-sm md:text-base">
+                    An e-commerce website for a fashion brand. It includes features such as product listings, a shopping cart, and a checkout system.
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-sm md:text-base">
+                    <li>Developed the front-end using HTML, CSS, and JavaScript.</li>
+                    <li>Implemented a responsive design to ensure compatibility with various devices.</li>
+                    <li>Integrated a payment gateway for secure transactions.</li>
+                </ul>
+                <p class="leading-loose text-sm md:text-base">Features include product search, user authentication, and order tracking.</p>
+            </div>
+        </div>
+
+        <!-- Project 3 GameScore-->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
+            <div class="relative rounded-2xl mb-4">
+                <img src="assets/images/GameScore1.png" alt="GameScore Image" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
+                    <div class="p-4 text-white space-y-2">
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors ml-2">Source Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3 text-grey-700 dark:text-gray-300">
+                <h3 class="text-3xl font-semibold drop-shadow-lg tracking-widest">GameScore</h3>
+                <div class="flex flex-col space-y-2 text-sm text-black bg-white/60 p-3 rounded-xl shadow-inner">
+                    <span class="px-3 py-1 bg-pink-50 text-pink-600 rounded-full self-start font-medium">Early 2024</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">.NET</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">C#</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">SQL</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">JSON</span>
+                    </div>
+                </div>
+                <p class="leading-loose text-sm md:text-base">
+                    GameScore is a platform where users can search for games, create accounts, log in, connect with friends, and comment on games. My key contributions were:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-sm md:text-base">
+                    <li>Developing a dynamic search functionality.</li>
+                    <li>Fetching game data from an API, storing it in a JSON file, sorting it, and uploading it to the site’s game categories.</li>
+                    <li>Implementing a comments feature tied to specific users.</li>
+                    <li>Adding dynamic animations to game titles based on mouse movement.</li>
+                    <li>Creating an Easter egg featuring a Pac-Man animation where Pac-Man eats dots.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Project 4 Hardbor Administration App-->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
+            <div class="relative rounded-2xl mb-4">
+                <img src="path/to/harborapp.jpg" alt="Harbor App Image" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
+                    <div class="p-4 text-white space-y-2">
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors ml-2">Source Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3 text-grey-700 dark:text-gray-300">
+                <h3 class="text-3xl font-semibold drop-shadow-lg tracking-widest">Harbor Administration App</h3>
+                <div class="flex flex-col space-y-2 text-sm text-black bg-white/60 p-3 rounded-xl shadow-inner">
+                    <span class="px-3 py-1 bg-pink-50 text-pink-600 rounded-full self-start font-medium">Late 2024</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">.NET</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">C#</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">Entity Framework</span>
+                    </div>
+                </div>
+                <p class="leading-loose text-sm md:text-base">
+                    A C# console application for managing harbor administration tasks. The app utilizes Entity Framework Core and LINQ queries to handle:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-sm md:text-base">
+                    <li>Boat registrations and docking spots.</li>
+                    <li>Database integration for storing and retrieving information.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Project 5 Airport App-->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
+            <div class="relative rounded-2xl mb-4">
+                <img src="path/to/airportapp.jpg" alt="Airport App Image" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
+                    <div class="p-4 text-white space-y-2">
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors ml-2">Source Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3 text-grey-700 dark:text-gray-300">
+                <h3 class="text-3xl font-semibold drop-shadow-lg tracking-widest">Airport App</h3>
+                <div class="flex flex-col space-y-2 text-sm text-black bg-white/60 p-3 rounded-xl shadow-inner">
+                    <span class="px-3 py-1 bg-pink-50 text-pink-600 rounded-full self-start font-medium">Late 2024</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">.NET</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">C#</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">APIs</span>
+                    </div>
+                </div>
+                <p class="leading-loose text-sm md:text-base">
+                    An application that fetches and displays information about flights and airports using an API.
+                </p>
+            </div>
+        </div>
+
+        <!-- Project 6 Flask Library App-->
+        <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
+            <div class="relative rounded-2xl mb-4">
+                <img src="path/to/flasklibraryapp.jpg" alt="Flask Library App Image" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
+                    <div class="p-4 text-white space-y-2">
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
+                        <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors ml-2">Source Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-3 text-grey-700 dark:text-gray-300">
+                <h3 class="text-3xl font-semibold drop-shadow-lg tracking-widest">Flask Library App</h3>
+                <div class="flex flex-col space-y-2 text-sm text-black bg-white/60 p-3 rounded-xl shadow-inner">
+                    <span class="px-3 py-1 bg-pink-50 text-pink-600 rounded-full self-start font-medium">Mid 2022</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">Python</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">Flask</span>
+                        <span class="px-3 py-1 bg-gray-100 rounded-full text-gray-800">SQLite</span>
+                    </div>
+                </div>
+                <p class="leading-loose text-sm md:text-base">
+                    A Flask application where users can:
+                </p>
+                <ul class="list-disc list-inside space-y-1 text-sm md:text-base">
+                    <li>Log in and manage their accounts.</li>
+                    <li>Save, search for, and add new books.</li>
+                    <li>Store all data persistently in an SQLite database.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section id="contact" class="scroll-offset scroll-mt-20">
+            <h2 class="text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">Contact</h2>
+            <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl contact">
+                <p class="text-xl">Email: <a href="mailto:Jonathan.Gunnerud@gmail.com" class="text-blue-600 hover:text-purple-600 transition-colors duration-300">Jonathan.Gunnerud@gmail.com</a></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Arrow to scroll back to top -->
+    <div id="scroll-to-top" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 transition-opacity duration-300 z-50">
+        <button class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-full shadow-lg hover:from-purple-600 hover:to-blue-600 focus:outline-none transform transition-transform duration-300 hover:scale-110">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <footer class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm mt-20">
+        <div class="container mx-auto py-8 px-4 text-center">
+            <p>&copy; 2025 Jonathan Gunnerud. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="src/js/scripts.js"></script>
+    <script>
+        document.addEventListener('mousemove', function(e) {
+        const haloParent = document.querySelector('.halo-effect');
+        if (!haloParent) return;
+
+        const rect = haloParent.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+        const scale = 1 + Math.sqrt(deltaX * deltaX + deltaY * deltaY) * 0.05;
+
+        haloParent.style.setProperty('--halo-translate-x', `${deltaX * 10}px`);
+        haloParent.style.setProperty('--halo-translate-y', `${deltaY * 10}px`);
+        haloParent.style.setProperty('--halo-scale', scale);
+    });
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        var menu = document.getElementById('menu');
+        menu.classList.toggle('hidden');
+    });
+
+
+    const scrollToTopButton = document.getElementById('scroll-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                scrollToTopButton.classList.remove('opacity-0');
+                scrollToTopButton.classList.add('opacity-100');
+            } else {
+                scrollToTopButton.classList.remove('opacity-100');
+                scrollToTopButton.classList.add('opacity-0');
+            }
+        });
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

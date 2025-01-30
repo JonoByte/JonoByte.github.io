@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .tech-item {
+            position: relative;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        .tech-item:hover {
+            transform: scale(1.1);
+        }
+        .tech-item .tech-popup {
+            display: none;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 20;
+            white-space: nowrap;
+        }
+        .tech-item:hover .tech-popup {
+            display: block;
+        }
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-30deg);
+            transition: left 0.5s ease;
+            z-index: 10;
+        }
+        .tech-item:hover::before {
+            left: 100%;
+        }
+        .dark-mode {
+            background-color: #1a202c;
+            color: #cbd5e0;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748;
+        }
+        .dark-mode .text-gray-900 {
+            color: #cbd5e0;
+        }
+        .dark-mode .text-blue-500 {
+            color: #63b3ed;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-white shadow">
+        <nav class="container mx-auto p-6 flex justify-between items-center">
+            <div class="text-2xl font-bold">My Portfolio</div>
+            <ul class="flex space-x-6">
+                <li><a href="#about" class="hover:text-blue-500">About</a></li>
+                <li><a href="#projects" class="hover:text-blue-500">Projects</a></li>
+                <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
+                <li>
+                    <button id="theme-toggle" class="hover:text-blue-500">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container mx-auto p-6">
+        <section id="about" class="my-12">
+            <h1 class="text-4xl font-bold mb-4">About Me</h1>
+            <p class="text-lg">Welcome to my portfolio! I am a passionate developer with experience in various technologies.</p>
+        </section>
+        <section id="technologies" class="my-12">
+            <h1 class="text-4xl font-bold mb-4">Technologies</h1>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fab fa-python text-4xl mr-4"></i>
+                    <span class="text-lg">Python</span>
+                    <div class="tech-popup">
+                        <p>Python, Flask, GDscript</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fab fa-git-alt text-4xl mr-4"></i>
+                    <span class="text-lg">Git</span>
+                    <div class="tech-popup">
+                        <p>Git, Git Master</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fas fa-database text-4xl mr-4"></i>
+                    <span class="text-lg">SQL</span>
+                    <div class="tech-popup">
+                        <p>SQL, Ssms, SQLite, Database Design</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fab fa-microsoft text-4xl mr-4"></i>
+                    <span class="text-lg">.NET Core</span>
+                    <div class="tech-popup">
+                        <p>.NET Core, .NET Framework, ASP.NET, ASP.NET Core, MVC, MAUI, Razorpages</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fab fa-html5 text-4xl mr-4"></i>
+                    <span class="text-lg">HTML</span>
+                    <div class="tech-popup">
+                        <p>HTML, CSS, Tailwind</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fab fa-js text-4xl mr-4"></i>
+                    <span class="text-lg">JavaScript</span>
+                    <div class="tech-popup">
+                        <p>JSON, XML</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fab fa-figma text-4xl mr-4"></i>
+                    <span class="text-lg">Figma</span>
+                    <div class="tech-popup">
+                        <p>Figma</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fab fa-aws text-4xl mr-4"></i>
+                    <span class="text-lg">Azure</span>
+                    <div class="tech-popup">
+                        <p>Azure, Azure DevOps</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fas fa-code text-4xl mr-4"></i>
+                    <span class="text-lg">C#</span>
+                    <div class="tech-popup">
+                        <p>C#, Unity</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fas fa-project-diagram text-4xl mr-4"></i>
+                    <span class="text-lg">Scrum</span>
+                    <div class="tech-popup">
+                        <p>Scrum, Scrum Master</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow flex items-center tech-item">
+                    <i class="fas fa-tools text-4xl mr-4"></i>
+                    <span class="text-lg">Tools</span>
+                    <div class="tech-popup">
+                        <p>Visual Studio, VS Code, Linux, Arduino</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects" class="my-12">
+            <h1 class="text-4xl font-bold mb-4">Projects</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-bold mb-2">Project 1</h2>
+                    <p class="text-lg">Description of project 1.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-bold mb-2">Project 2</h2>
+                    <p class="text-lg">Description of project 2.</p>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="my-12">
+            <h1 class="text-4xl font-bold mb-4">Contact</h1>
+            <p class="text-lg">Email: <a href="mailto:Jonathan.Gunnerud@gmail.com" class="text-blue-500 hover:underline">Jonathan.Gunnerud@gmail.com</a></p>
+        </section>
+    </main>
+    <footer class="bg-white shadow mt-12">
+        <div class="container mx-auto p-6 text-center">
+            <p>&copy; 2023 Your Name</p>
+        </div>
+    </footer>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>

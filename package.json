@@ -1,0 +1,26 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server",
+    "build": "tailwindcss -i ./src/css/styles.css -o ./dist/output.css --watch",
+    "test": "echo 'No tests defined'"
+  },
+  "keywords": [
+    "portfolio",
+    "web",
+    "stylish",
+    "responsive"
+  ],
+  "author": "Jonathan Gunnerud",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "live-server": "^1.2.2",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2"
+  }
+}
