@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200, height=630, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 1200px;
+            height: 630px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a202c, #2d3748);
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+        
+        .container {
+            text-align: center;
+            z-index: 2;
+            padding: 40px;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 72px;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            white-space: nowrap;
+        }
+        
+        p {
+            font-size: 36px;
+            color: #e2e8f0;
+            margin: 0;
+            padding: 0;
+            line-height: 1.4;
+        }
+        
+        .gradient-bg {
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15), transparent 70%);
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            z-index: 1;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="container">
+        <h1>Jonathan Gunnerud</h1>
+        <p>Full Stack Developer</p>
+    </div>
+</body>
+</html> 

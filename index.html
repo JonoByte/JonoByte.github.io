@@ -3,110 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="My little corner of the internet where I showcase my projects and skills as a full stack developer.">
+    <meta name="description" content="Full Stack Developer specializing in .NET, C#, and modern web technologies. View my portfolio of projects and technical expertise.">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Jonathan Gunnerud - Full Stack Developer">
-    <meta property="og:description" content="My little corner of the internet where I showcase my projects and skills as a full stack developer.">
-    <meta property="og:image" content="path/to/your/image.jpg">
+    <meta property="og:description" content="Full Stack Developer specializing in .NET, C#, and modern web technologies. View my portfolio of projects and technical expertise.">
+    <meta property="og:image" content="assets/images/meta/og-image.png">
     <meta property="og:url" content="https://jonobyte.github.io">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jonathan Gunnerud - Full Stack Developer">
+    <meta name="twitter:description" content="Full Stack Developer specializing in .NET, C#, and modern web technologies. View my portfolio of projects and technical expertise.">
+    <meta name="twitter:image" content="assets/images/meta/og-image.png">
+    
     <title>Full Stack Developer</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="src/css/styles.css">
-    <style>
-        .tech-item {
-            position: relative;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            transform-origin: center;
-            will-change: transform;
-            backface-visibility: hidden;
-            z-index: 1;
-            pointer-events: auto;
-        }
-
-        .tech-popup {
-            opacity: 0;
-            visibility: hidden;
-            position: absolute;
-            top: -70px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            z-index: 20;
-        }
-
-        .halo-effect {
-        position: relative;
-        z-index: 1;
-    }
-
-    .halo-effect::before {
-        content: '';
-        position: absolute;
-        top: -10px;
-        left: -10px;
-        right: -10px;
-        bottom: -10px;
-        background: linear-gradient(45deg, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.1), rgba(0, 0, 255, 0.3));
-        border-radius: 20px;
-        z-index: -1;
-        filter: blur(20px);
-        opacity: 0.7;
-        transition: transform 0.1s ease, background 0.3s ease;
-    }
-
-    @keyframes halo {
-        0% {
-            transform: scale(1);
-        }
-        100% {
-            transform: scale(1.05);
-        }
-    }
-
-    .scroll-offset {
-        padding-top: 10rem;
-        margin-top: -4rem;
-    }
-    .info-icon {
-    font-size: 1rem;
-    color: #ffffffc5;
-    margin-left: 8px;
-    cursor: pointer;
-    position: relative;
-}
-    .tooltip-text {
-    visibility: visible;
-    width: 150px;
-    background-color: #3333335d;
-    color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    padding: 4px 8px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 1;
-    font-size: 0.875rem;
-    line-height: 1.2;
-    text-shadow: #3333335d 2px 2px 2px;
-}
-
-.tooltip-text::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 5px;
-    border-style: solid;
-    border-color: #33333352 transparent transparent transparent;
-}
-    </style>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <header class="fixed top-0 left-0 w-full bg-white bg-opacity-80 dark:bg-gray-800 dark:bg-opacity-80 shadow-md z-50">
@@ -125,6 +48,7 @@
             </button>
             <ul id="menu" class="hidden md:flex space-x-8">
                 <li><a href="#about" class="hover:text-blue-600 transition-colors duration-300">About</a></li>
+                <li><a href="#journey" class="hover:text-blue-600 transition-colors duration-300">Journey</a></li>
                 <li><a href="#technologies" class="hover:text-blue-600 transition-colors duration-300">Technologies</a></li>
                 <li><a href="#projects" class="hover:text-blue-600 transition-colors duration-300">Projects</a></li>
                 <li><a href="#contact" class="hover:text-blue-600 transition-colors duration-300">Contact</a></li>
@@ -142,7 +66,9 @@
         <div class="container mx-auto text-center z-10 px-4">
             <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">Full Stack Developer</h1>
             <p class="text-2xl mb-8 text-gray-700 dark:text-gray-300">Passionate about creating elegant solutions</p>
-            <a href="#contact" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">Get in touch</a>
+            <a href="#contact" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+                Let's connect
+            </a>
         </div>
     </section>
 
@@ -162,14 +88,137 @@
                 <p class="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
                     When I'm not coding, you can find me exploring new technologies, playing video games, working out, or working on personal projects that combine my love for technology and creativity.
                 </p>
+                <div class="mt-8 border-t pt-6 dark:border-gray-700">
+                    <h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">Certifications</h3>
+                    <div class="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+                        <div class="flex-shrink-0">
+                            <i class="fab fa-free-code-camp text-4xl text-blue-600 dark:text-blue-400"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Responsive Web Design Certification</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">freeCodeCamp</p>
+                            <a href="https://www.freecodecamp.org/certification/fcc55f8b929-8a0f-4315-9039-41faf8261e4d/responsive-web-design" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="text-sm text-blue-600 hover:text-purple-600 transition-colors duration-300">
+                                View Certificate →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="journey" class="scroll-offset mb-32 scroll-mt-20">
+            <h2 class="text-4xl font-bold mb-12 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">My Journey</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item left" style="animation-delay: 0.2s;">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2011 - 2021</div>
+                        <h3 class="text-xl font-bold mb-2">Early Tech Journey</h3>
+                        <p class="text-gray-600 dark:text-gray-300">My fascination with technology began early in life. <span class="highlight">Had my first programming experience at age 13 with C++</span>. Although I didn't continue programming immediately after, my passion for technology remained strong.</p>
+                        <div class="achievement">
+                            Maintained deep interest in technology through:
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Extensively following <span class="key-skill">tech developments</span> through videos and media</li>
+                                <li>Deep fascination with <span class="key-skill">hardware</span>, including computers and phones</li>
+                                <li>Continuous exploration of new <span class="key-skill">technological advancements</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="animation-delay: 0.4s;">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020 - 2024</div>
+                        <h3 class="text-xl font-bold mb-2">Healthcare Professional</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Worked at Lidköping Ljungen B during summers while studying:</p>
+                        <div class="achievement">
+                            Developed essential soft skills that complement technical expertise:
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Strong <span class="key-skill">communication</span> and adaptability</li>
+                                <li>Efficient <span class="key-skill">multitasking</span> and process management</li>
+                                <li>Effective <span class="key-skill">team collaboration</span> and positive environment creation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item left" style="animation-delay: 0.6s;">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - 2023</div>
+                        <h3 class="text-xl font-bold mb-2">Axevalla Folkhögskola</h3>
+                        <p class="text-gray-600 dark:text-gray-300">General Course in Game Development and Networking, studying:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><span class="key-skill">Networking</span> fundamentals and infrastructure</li>
+                            <li><span class="key-skill">Arduino</span> development and hardware programming</li>
+                            <li><span class="key-skill">Python</span> programming and Flask framework</li>
+                            <li>Game development with <span class="key-skill">Godot Engine</span> (GDscript)</li>
+                            <li><span class="key-skill">Unity</span> game development and C# integration</li>
+                            <li><span class="key-skill">Linux</span> systems and server management</li>
+                        </ul>
+                        <div class="achievement mt-4">
+                            Developed strong problem-solving skills through various technical projects and <span class="key-skill">participated in Advent of Code</span>, enhancing programming capabilities.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item right" style="animation-delay: 0.8s;">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - 2025</div>
+                        <h3 class="text-xl font-bold mb-2">Uddevalla Yrkeshögskola</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Backend Developer Education with comprehensive focus on:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><span class="key-skill">C#</span> and .NET ecosystem (Framework, Core, MAUI)</li>
+                            <li>Web development (HTML, CSS, MVC, <span class="key-skill">Razor Pages</span>, Blazor)</li>
+                            <li><span class="key-skill">Database</span> management and design (SQL, SSMS, SQLite)</li>
+                            <li><span class="key-skill">API</span> development and integration</li>
+                            <li><span class="key-skill">Azure</span> cloud services and DevOps</li>
+                            <li><span class="key-skill">Agile</span> methodologies and Scrum Master practices</li>
+                            <li>Version control with Git (<span class="key-skill">Git Master</span> role)</li>
+                        </ul>
+                        <div class="achievement mt-4">
+                            Naturally assumed leadership roles and excelled in team project management.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item left" style="animation-delay: 1.0s;">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025 (January - April)</div>
+                        <h3 class="text-xl font-bold mb-2">Movz Internship</h3>
+                        <p class="text-gray-600 dark:text-gray-300">Internship at <span class="highlight">award-winning Swedish transport technology company</span>:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Developing <span class="key-skill">sustainable</span> transport solutions</li>
+                            <li>Contributing to the <span class="key-skill">Movz App</span> and Admin panel</li>
+                            <li>Building efficient <span class="key-skill">logistics</span> management systems</li>
+                            <li>Working with modern tech stack and best practices</li>
+                            <li>Collaborating in an innovative team environment</li>
+                        </ul>
+                        <div class="achievement mt-4">
+                            Applied technical expertise using:
+                            <ul class="list-disc list-inside space-y-1">
+                                <li><span class="key-skill">MongoDB</span> for database management</li>
+                                <li><span class="key-skill">Node.js</span> for backend development</li>
+                                <li><span class="key-skill">Express.js</span> for API development</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="technologies" class="scroll-offset mb-32 scroll-mt-20">
-            <h2 class="relative inline-block text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
-                Technologies
-                <span class="tooltip-text"> <i class="fas fa-info-circle info-icon"></i> Hover to see more about each technology</span>
-            </h2>
+            <div class="tech-section-header">
+                <h2 class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text">
+                    Technologies
+                </h2>
+                <div class="tech-info-container">
+                    <i class="fas fa-info-circle info-icon"></i>
+                    <span class="tooltip-text">Hover over each card to see related tools & experience</span>
+                </div>
+            </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 technologies">
             <!-- C# -->
             <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl tech-item">
@@ -402,7 +451,7 @@
                 </p>
                 <ul class="list-disc list-inside space-y-1 text-sm md:text-base">
                     <li>Developing a dynamic search functionality.</li>
-                    <li>Fetching game data from an API, storing it in a JSON file, sorting it, and uploading it to the site’s game categories.</li>
+                    <li>Fetching game data from an API, storing it in a JSON file, sorting it, and uploading it to the site's game categories.</li>
                     <li>Implementing a comments feature tied to specific users.</li>
                     <li>Adding dynamic animations to game titles based on mouse movement.</li>
                     <li>Creating an Easter egg featuring a Pac-Man animation where Pac-Man eats dots.</li>
@@ -413,7 +462,9 @@
         <!-- Project 4 Hardbor Administration App-->
         <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
             <div class="relative rounded-2xl mb-4">
-                <img src="path/to/harborapp.jpg" alt="Harbor App Image" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Harbor+Admin+App" 
+                     alt="Harbor App Image" 
+                     class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
                     <div class="p-4 text-white space-y-2">
                         <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
@@ -444,7 +495,9 @@
         <!-- Project 5 Airport App-->
         <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
             <div class="relative rounded-2xl mb-4">
-                <img src="path/to/airportapp.jpg" alt="Airport App Image" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Airport+App" 
+                     alt="Airport App Image" 
+                     class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
                     <div class="p-4 text-white space-y-2">
                         <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
@@ -471,7 +524,9 @@
         <!-- Project 6 Flask Library App-->
         <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl project-card">
             <div class="relative rounded-2xl mb-4">
-                <img src="path/to/flasklibraryapp.jpg" alt="Flask Library App Image" class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
+                <img src="https://placehold.co/600x400/1e40af/ffffff?text=Flask+Library+App" 
+                     alt="Flask Library App Image" 
+                     class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-125">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 flex items-end transition-opacity duration-500">
                     <div class="p-4 text-white space-y-2">
                         <a href="#" class="px-4 py-2 bg-black bg-opacity-60 hover:bg-opacity-80 rounded-lg transition-colors">View Project</a>
@@ -523,45 +578,5 @@
         </div>
     </footer>
     <script src="src/js/scripts.js"></script>
-    <script>
-        document.addEventListener('mousemove', function(e) {
-        const haloParent = document.querySelector('.halo-effect');
-        if (!haloParent) return;
-
-        const rect = haloParent.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const deltaX = (x - centerX) / centerX;
-        const deltaY = (y - centerY) / centerY;
-        const scale = 1 + Math.sqrt(deltaX * deltaX + deltaY * deltaY) * 0.05;
-
-        haloParent.style.setProperty('--halo-translate-x', `${deltaX * 10}px`);
-        haloParent.style.setProperty('--halo-translate-y', `${deltaY * 10}px`);
-        haloParent.style.setProperty('--halo-scale', scale);
-    });
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-        var menu = document.getElementById('menu');
-        menu.classList.toggle('hidden');
-    });
-
-
-    const scrollToTopButton = document.getElementById('scroll-to-top');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                scrollToTopButton.classList.remove('opacity-0');
-                scrollToTopButton.classList.add('opacity-100');
-            } else {
-                scrollToTopButton.classList.remove('opacity-100');
-                scrollToTopButton.classList.add('opacity-0');
-            }
-        });
-
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    </script>
 </body>
 </html>
